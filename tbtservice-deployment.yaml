@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.tbtservice: glob:*.dev
+  labels:
+    app: tbtservice
+  name: tbtservice
+  namespace: gms
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: tbtservice
+  template:
+    metadata:
+      annotations:
+        configHash: 4812abf8d43fe3a8105f4ef04a9a55f963f4e860e27421fd765a2ff885a784da
+      labels:
+        app: tbtservice
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: tbtservice
+        - secretRef:
+            name: tbtservice
+        image: githost:6000/backend/gameservers/yatzy-party-tbtservice:latest
+        imagePullPolicy: IfNotPresent
+        name: tbtservice
+        ports:
+        - containerPort: 5000
+          name: grpc-5000
+          protocol: TCP
+        - containerPort: 1234
+          name: http-metrics
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 15m
+            memory: 201Mi
+        securityContext:
+          privileged: false
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

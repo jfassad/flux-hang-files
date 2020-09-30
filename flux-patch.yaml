@@ -1,0 +1,140 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: application
+      containers:
+      - image: githost:6000/backend/webservices/k8s/application:v1.0.1-c085c6a9.lab
+        name: application
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: auth
+      containers:
+      - image: githost:6000/backend/webservices/k8s/auth:v1.2.2-6f8246df.lab
+        name: auth
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avatar
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: avatar
+      containers:
+      - image: githost:6000/backend/webservices/k8s/avatar:v0.0.2-900dd826.lab
+        name: avatar
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-us
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: contact-us
+      containers:
+      - image: githost:6000/backend/webservices/k8s/contact-us:v0.0.2-117e2919.lab
+        name: contact-us
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8spoc
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: k8spoc
+      containers:
+      - image: githost:6000/backend/pocs/k8spoc:v1.0.1-31247ba0.dev
+        name: k8spoc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: player-data
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: player-data
+      containers:
+      - image: githost:6000/backend/webservices/k8s/player-data:v0.0.2-b3787685.lab
+        name: player-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: profile
+      containers:
+      - image: githost:6000/backend/webservices/k8s/profile:v1.2.1-79ce99c9.lab
+        name: profile
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: social-share
+  namespace: bis
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: social-share
+      containers:
+      - image: githost:6000/backend/webservices/k8s/social-share:v1.1.2-9a7d1fb8.lab
+        name: social-share
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tbtservice
+  namespace: gms
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: tbtservice
+      containers:
+      - image: githost:6000/backend/gameservers/yatzy-party-tbtservice:v0.0.2-edc348dc.dev
+        name: tbtservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tbtservice-stage
+  namespace: gms
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: tbtservice-stage
+      containers:
+      - image: githost:6000/backend/gameservers/yatzy-party-tbtservice:v0.0.2-edc348dc.stage
+        name: tbtservice-stage
